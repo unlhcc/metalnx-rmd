@@ -55,7 +55,11 @@ class ServerstatusRMDCommand(RMDCommand):
         for memory in memories:
             used = int(json_report[memory]['used'])
             total = int(json_report[memory]['total'])
-            memory_usage = float(used) / total
+            try:
+                memory_usage = float(used) / total
+            except ZeroDivisionError:
+                memory_usage = 0
+
             if memory_usage > 95:
                 memory_status |= ERROR_STATE[0]
                 memory_status &= ERROR_STATE[0]
