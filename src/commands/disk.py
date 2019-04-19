@@ -3,6 +3,7 @@ RMD plugin for disk information
 """
 from .base import RMDCommand
 from json import dumps
+from src import DISK_INFO_DIRS
 
 class DiskRMDCommand(RMDCommand):
     def __init__(self):
@@ -10,7 +11,7 @@ class DiskRMDCommand(RMDCommand):
         Initiates the RMDCommand class object with the df command
         :return: new instance of DiskRMDCommand
         """
-        super(DiskRMDCommand, self).__init__('df', ['-P'])
+        super(DiskRMDCommand, self).__init__('df', ['-P'] + DISK_INFO_DIRS)
 
     def outputReport(self):
         """

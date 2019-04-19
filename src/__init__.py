@@ -11,7 +11,10 @@ PORT = int(config.get('daemon', 'port'))
 # iRODS SECTION
 SERVER_LOGS_DIR = config.get('irods', 'server_logs_dir')
 LOG_LINES = int(config.get('irods', 'log_lines_to_show'))
-
+try:
+    DISK_INFO_DIRS = config.get('irods', 'disk_info_dirs').split(',')
+except ConfigParser.NoOptionError:
+    DISK_INFO_DIRS = []
 # Daemon logging settings
 DAEMON_LOG_FILE = config.get('daemon', 'log_file')
 
